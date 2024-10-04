@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# 定义要读取的 YAML 文件
+yaml_file="/etc/certbot/config.yaml"
+
 #ywdblog@gmail.com 欢迎关注我的书《深入浅出HTTPS：从原理到实战》
 
 ###### 根据自己的情况修改 Begin ##############
@@ -11,8 +14,9 @@ pythoncmd="/usr/bin/python"
 
 #填写阿里云的AccessKey ID及AccessKey Secret
 #如何申请见https://help.aliyun.com/knowledge_detail/38738.html
-ALY_KEY=""
-ALY_TOKEN=""
+# 使用 yq 读取 accessKeyId 和 accessKeySecret
+ALY_KEY=$(yq eval '.credentials.aly.accessKeyId' $yaml_file)
+ALY_TOKEN=$(yq eval '.credentials.aly.accessKeySecret' $yaml_file)
 
 #填写腾讯云的SecretId及SecretKey
 #如何申请见https://console.cloud.tencent.com/cam/capi
