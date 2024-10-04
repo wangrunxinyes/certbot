@@ -64,6 +64,9 @@ $obj = new AliDns($argv[5], $argv[6], $domainarray[1]);
 switch ($argv[1]) {
 case "clean":
 	$data = $obj->DescribeDomainRecords();
+	if(!isset($data["DomainRecords"])){
+		break;
+	}
 	$data = $data["DomainRecords"]["Record"];
 	if (is_array($data)) {
 		foreach ($data as $v) {
